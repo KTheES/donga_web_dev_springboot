@@ -2,7 +2,7 @@
 springboot study / dev on Donga.univ
 
 - Technology use⚙️
-  - springboot
+  - springboot- gradle/groovy
   - eclipse IDE
   - ThymeLeaf
   - mySQL
