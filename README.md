@@ -6,6 +6,8 @@ springboot study / dev on Donga.univ
   - eclipse IDE
   - ThymeLeaf
   - mySQL
-  - Java 17
+  - Java 21
   -  . . . TBA
  
+- plugins
+  - Lombok
