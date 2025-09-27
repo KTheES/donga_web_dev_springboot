@@ -1,0 +1,54 @@
+<body class="container mt-4">
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h2 th:text="${movie.title}">영화 제목</h2>
+            <p>러닝타임: <span th:text="${movie.runningTime}"></span>분</p>
+            <p>남은 좌석: <span th:text="${movie.leftSeat}"></span></p>
+        </div>
+    </div>
+
+    <!-- 예매 성공 alert -->
+    <div th:if="${message}">
+		<script>
+	        alert("[[${message}]]");
+	    </script>
+    </div>
+
+
+	<h4>좌석 선택</h4>
+	<form th:action="@{/booking/{id}(id=${movieId})}" method="post" class="mb-4">
+	    <div class="d-flex flex-column gap-2">
+	        <!-- 행 = 5 -->
+	        <div th:each="row : ${#numbers.sequence(0,4)}" class="d-flex gap-2 justify-content-center">
+	            <!-- 열 = 10 -->
+	            <button type="submit"
+	                    th:each="col : ${#numbers.sequence(1,10)}"
+	                    class="btn btn-outline-primary"
+	                    th:text="${row*10 + col}"
+	                    th:value="${row*10 + col}"
+	                    name="seatNum"
+	                    th:disabled="${bookedSeats != null and bookedSeats.contains(row*10 + col)}"
+	                    style="width:50px; height:50px;">
+	            </button>
+	        </div>
+	    </div>
+	</form>
+
+    <!-- 내 예약 내역 -->
+    <h3>내 예약 내역</h3>
+    <div class="row">
+        <div class="col-md-4 mb-3" th:each="booking : ${bookings}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 th:text="${booking.movieTitle}"></h5>
+                    <p>좌석 번호: <span th:text="${booking.seatNum}"></span></p>
+                    <p>상영 시간: <span th:text="${booking.time}"></span></p>
+                    <p>가격: <span th:text="${booking.price}"></span>원</p>
+                    <p>결제 상태: 결제 완료</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
